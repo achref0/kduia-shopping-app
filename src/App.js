@@ -9,8 +9,11 @@ import Location from './components/Location';
 function App() {
   return (
     <div className="App">
-      <h1>Hello y si zebii</h1>
+      <h1>Shopping App</h1>
       <CartValue /> {/* Add one component at a time */}
+      <ExpenseList />
+      <ItemSelected />
+      <Location />
     </div>
   );
 }
