@@ -36,6 +36,27 @@ app.get('/api/products/:id', (req, res) => {
   }
 });
 
+// Add a new product
+app.post('/api/products', (req, res) => {
+  const newProduct = req.body;
+
+  // Validate input
+  if (!newProduct.name || !newProduct.price) {
+    return res.status(400).json({ message: 'Name and price are required' });
+  }
+
+  // Generate a unique ID
+  newProduct.id = products.length ? products[products.length - 1].id + 1 : 1;
+
+  // Add the new product to the array
+  products.push(newProduct);
+
+  res.status(201).json({
+    message: 'Product added successfully',
+    product: newProduct
+  });
+});
+
 // Add a product to the cart
 app.post('/api/cart', (req, res) => {
   const { productId } = req.body;
